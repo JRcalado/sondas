@@ -1,18 +1,26 @@
 defmodule Sondas.Structs.Planalto do
 
-  defstruct [:x, :y]
+  defstruct size: nil, grid: nil
 
-  def new() do
+  def new(size) do
     %__MODULE__{
-
+      size: size, grid: init(size)
 
     }
   end
 
-  def init(size) do
+  def init(list) do
+
+    size = sum(list)
     teste =  for x <- 1..size do
       size - x
     end
+  end
+
+  def sum([]), do: 0
+
+  def sum([head | tail]) do
+    head + sum(tail)
   end
 
 end
