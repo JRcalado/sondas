@@ -4,14 +4,14 @@ defmodule Sondas.Structs.Planalto do
 
   def new(size) do
     %__MODULE__{
-      size: size, grid: init(size)
+      size: sum(size), grid: sum(size) |> init()
 
     }
   end
 
-  def init(list) do
+  def init(size) do
 
-    size = sum(list)
+
     teste =  for x <- 1..size do
       size - x
     end

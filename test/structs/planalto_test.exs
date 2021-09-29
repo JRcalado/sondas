@@ -4,7 +4,7 @@ defmodule Sondas.PlanaltoTest do
   alias Sondas.Structs.Planalto
 
   test "Create new planalto" do
-    Planalto.new([5, 5]) == "teste"
+    assert Planalto.new([5, 1]) == [1]
   end
 
 
