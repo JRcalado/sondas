@@ -4,6 +4,6 @@ defmodule Sondas.SondaTest do
  alias Sondas.Structs.Sonda
 
   test "create new sonda" do
-    assert Sondas.Structs.Sonda.new([1, 2, "n"]) == "teste"
+    assert Sonda.new([1, 2], "n") == %Sondas.Structs.Sonda{orientation: "n", position: [1, 2]}
   end
 end
