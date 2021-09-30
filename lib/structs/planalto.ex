@@ -4,17 +4,25 @@ defmodule Sondas.Structs.Planalto do
 
   def new(size) do
     %__MODULE__{
-      size: sum(size), grid: sum(size) |> init()
+      size: sum(size), grid: init(size) |> Enum.reverse
 
     }
   end
 
   def init(size) do
+    # IO.read(:stdio, :line)
+    teste =  for x <- 0..List.first(size) do
+      x
+     end
 
+     for x <- 1..List.last(size) do
+      out =testeL(List.first(teste) + (x - 1), List.last(teste) + (x - 1)) |> List.to_tuple
+     end
 
-    teste =  for x <- 1..size do
-      size - x
-    end
+  end
+
+  def testeL(first, last) do
+    teste =  for x <- first..last, do: x
   end
 
   def sum([]), do: 0
@@ -24,13 +32,3 @@ defmodule Sondas.Structs.Planalto do
   end
 
 end
-
-
-  # [
-  #   [5, 6, 7, 8, 9, 10, 11],
-  #   [4, 5, 6, 7, 8, 9, 10],
-  #   [3, 4, 5, 6, 7, 8, 9],
-  #   [2, 3, 4, 5, 6, 7, 8],
-  #   [1, 2, 3, 4, 5, 6, 7],
-  #   [0, 1, 2, 3, 4, 5, 6]
-  # ]
