@@ -10,7 +10,6 @@ defmodule Sondas.Structs.Planalto do
   end
 
   def init(size) do
-    # IO.read(:stdio, :line)
     teste =  for x <- 0..List.first(size) do
       x
      end

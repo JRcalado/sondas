@@ -17,6 +17,8 @@ defmodule Sondas.Agents.SondaAgent do
   end
 
   def set(sonda,key) do
+
+
     Agent.update(__MODULE__,
       &Map.put(&1, key, sonda)
     )
