@@ -5,15 +5,11 @@ defmodule Sondas.Services.MovingSonda do
 
 
 
-  def control(out, sonda, key)do
-
+  def control(out, sonda)do
     action = String.upcase(out)
-
-  sonda =  SondaAgent.get(key)
-  IO.inspect(sonda)
    cond do
-     action == "L" or action == "R" -> calculate(action,  sonda.orientation) |> updade_orientatio(key)
-     action == "M" -> moved( sonda.position,  sonda.orientation)|> updade_position(key)
+     action == "L" or action == "R" -> calculate(action,  sonda.orientation) |> updade_orientatio()
+     action == "M" -> moved( sonda.position,  sonda.orientation)|> updade_position()
      true -> {:error, "coordenadas erradas"}
 
    end
@@ -22,12 +18,13 @@ defmodule Sondas.Services.MovingSonda do
 
 
 def moved(position, orientation)do
-IO.inspect(position)
-   case orientation do
+IO.inspect("moved")
+   case  String.upcase(orientation) do
      "N" -> List.update_at(position, 1, &(&1 + 1))
      "E" -> List.update_at(position, 0, &(&1 + 1))
      "S" -> List.update_at(position, 1, &(&1 - 1))
      "W" -> List.update_at(position, 0, &(&1 - 1))
+
 
    end
 
@@ -35,6 +32,10 @@ end
 
 
  def calculate(turn, orientation )do
+  IO.inspect("calculate")
+  IO.inspect(turn)
+  IO.inspect(orientation)
+
 
               map =  %{
                   :N => %{L: "W", R: "E"},
@@ -42,33 +43,40 @@ end
                   :S => %{L: "E", R: "W"},
                   :W => %{L: "S", R: "N"}
                }
-   Map.get(map, String.to_atom(orientation))
+   Map.get(map, String.upcase(orientation) |> String.to_atom())
    |> Map.get( String.to_atom(turn))
 
  end
 
 
 
- def updade_orientatio(orientation, key) do
+ def updade_orientatio(orientation) do
+  IO.inspect("updade_orientatio")
 
-   SondaAgent.get(key)
+   SondaAgent.get()
   |> Sonda.update_orientation(orientation)
-  |> SondaAgent.set(key)
+  |> SondaAgent.set()
   |> IO.inspect()
 
 
-IO.inspect(SondaAgent.get(key))
-  SondaAgent.get(key)
+IO.inspect(SondaAgent.get())
+  SondaAgent.get()
 
 end
 
-def updade_position(position, key) do
-
-  SondaAgent.get(key)
+def updade_position(position) do
+  IO.inspect("updade_position")
+  IO.inspect(position)
+  SondaAgent.get()
   |> Sonda.update_position(position)
-  |> SondaAgent.set('sonda1')
+  |> SondaAgent.set()
+  |> IO.inspect
 
-  SondaAgent.get('sonda1')
+
 
 end
+
+def updade_position( {:error, reason} =  error), do:  %{"error" => reason}
+
+
 end

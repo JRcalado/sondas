@@ -2,27 +2,27 @@ defmodule Sondas.Agents.SondaAgent do
 
   use Agent
 
-  def start_link() do
-    Agent.start_link(fn -> %{} end, name: __MODULE__)
+  def start_link(sonda) do
+    Agent.start_link(fn -> sonda end, name: __MODULE__)
   end
 
   def stop() do
     Agent.stop(__MODULE__)
   end
 
-  def get(key) do
-    Agent.get(__MODULE__,
-      &Map.get(&1, key)
-    )
+  def get() do
+    Agent.get(__MODULE__, fn(state) ->
+     state
+    end)
   end
 
-  def set(sonda,key) do
-
-
-    Agent.update(__MODULE__,
-      &Map.put(&1, key, sonda)
-    )
+  def set(sonda) do
+    Agent.update(__MODULE__, fn(state) ->
+        state = sonda
+    end)
+    get()
   end
+
 
 
 end
