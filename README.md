@@ -1,11 +1,9 @@
 # Sondas
 
-**TODO: Add description**
+**Envio de coordenadas para uma sonda explorar em planalto em outro planeta**
 
 ## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `sondas` to your list of dependencies in `mix.exs`:
+Software escrito em Elixir para intalar o elixir na sua maquina siga este tutorial [https://elixir-lang.org/install.html]
 
 ```elixir
 def deps do
