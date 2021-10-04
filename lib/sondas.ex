@@ -5,16 +5,13 @@ defmodule Sondas do
   alias Sondas.Services.ActionSonda
 
   def start do
-
     grid = get_malha() |> Planalto.new()
-
     sonda1 = get_coordenadas
-    |> ActionSonda.action(grid, get_command)
+     |> ActionSonda.action(grid, get_command)
 
     sonda2 = get_coordenadas
      |> Sondas.Agents.SondaAgent.set()
      |> ActionSonda.action(grid, get_command)
-
 
     display(sonda1)
     display(sonda2)

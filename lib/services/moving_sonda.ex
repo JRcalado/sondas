@@ -4,7 +4,6 @@ defmodule Sondas.Services.MovingSonda do
   alias Sondas.Structs.Sonda
 
 
-
   def control(out, sonda)do
     action = String.upcase(out)
    cond do
@@ -29,8 +28,7 @@ def moved(position, orientation)do
 
 end
 
-
- def calculate(turn, orientation )do
+def calculate(turn, orientation )do
 
               map =  %{
                   :N => %{L: "W", R: "E"},
@@ -43,30 +41,20 @@ end
 
  end
 
-
-
  def updade_orientatio(orientation) do
-
-   SondaAgent.get()
+  SondaAgent.get()
   |> Sonda.update_orientation(orientation)
   |> SondaAgent.set()
 
   SondaAgent.get()
-
 end
 
 def updade_position(position) do
-
   SondaAgent.get()
   |> Sonda.update_position(position)
   |> SondaAgent.set()
-
-
-
-
 end
 
 def updade_position( {:error, reason} =  error), do:  %{"error" => reason}
-
 
 end
