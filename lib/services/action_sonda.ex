@@ -7,7 +7,7 @@ defmodule Sondas.Services.ActionSonda do
   def action(sonda, grid, command) do
       SondaAgent.start_link(sonda)
       execute(command)
-        SondaAgent.get()
+      SondaAgent.get()
   end
 
   def execute(nil), do: SondaAgent.get()

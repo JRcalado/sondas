@@ -16,7 +16,8 @@ defmodule Sondas do
      |> ActionSonda.action(grid, get_command)
 
 
-    display(sonda1, sonda2)
+    display(sonda1)
+    display(sonda2)
 
 
   end
@@ -52,9 +53,14 @@ defmodule Sondas do
     input = IO.read(:stdio, :line) |>  String.replace(~r/\n/, "")
   end
 
-  def display(sonda1, sonda2) do
-    IO.puts(sonda1.position <> " " sonda1.orientation)
-    IO.puts(sonda2.position <> " " sonda2.orientation)
+  def display(sonda) do
+
+    position_prt1 = List.first(Map.get(sonda, :position))
+    position_prt2 = List.last(Map.get(sonda, :position))
+    orientation = Map.get(sonda, :orientation)
+
+    IO.puts("#{position_prt1} #{position_prt2} #{orientation}")
+    # IO.puts(sonda2.position <> " " sonda2.orientation)
   end
 
 end

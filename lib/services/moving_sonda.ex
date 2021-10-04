@@ -18,7 +18,6 @@ defmodule Sondas.Services.MovingSonda do
 
 
 def moved(position, orientation)do
-IO.inspect("moved")
    case  String.upcase(orientation) do
      "N" -> List.update_at(position, 1, &(&1 + 1))
      "E" -> List.update_at(position, 0, &(&1 + 1))
@@ -32,10 +31,6 @@ end
 
 
  def calculate(turn, orientation )do
-  IO.inspect("calculate")
-  IO.inspect(turn)
-  IO.inspect(orientation)
-
 
               map =  %{
                   :N => %{L: "W", R: "E"},
@@ -51,26 +46,21 @@ end
 
 
  def updade_orientatio(orientation) do
-  IO.inspect("updade_orientatio")
 
    SondaAgent.get()
   |> Sonda.update_orientation(orientation)
   |> SondaAgent.set()
-  |> IO.inspect()
 
-
-IO.inspect(SondaAgent.get())
   SondaAgent.get()
 
 end
 
 def updade_position(position) do
-  IO.inspect("updade_position")
-  IO.inspect(position)
+
   SondaAgent.get()
   |> Sonda.update_position(position)
   |> SondaAgent.set()
-  |> IO.inspect
+
 
 
 
