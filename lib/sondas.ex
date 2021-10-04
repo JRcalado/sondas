@@ -57,7 +57,7 @@ defmodule Sondas do
     orientation = Map.get(sonda, :orientation)
 
     IO.puts("#{position_prt1} #{position_prt2} #{orientation}")
-    # IO.puts(sonda2.position <> " " sonda2.orientation)
+
   end
 
 end
