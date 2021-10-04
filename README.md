@@ -44,7 +44,7 @@ Exemplo:
 
 ```
 
-## Execution
+## Tests
 Para executar os teste basta digitar o comando mix test --trace dentro do diretorio da aplicaçãp 
 
 Exemplo: 
